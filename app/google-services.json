@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "179941010880",
+    "firebase_url": "https://gst-smart-calculator.firebaseio.com",
+    "project_id": "gst-smart-calculator",
+    "storage_bucket": "gst-smart-calculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179941010880:android:4eda04b043d4e761",
+        "android_client_info": {
+          "package_name": "in.coloredfeather.gstsmartcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179941010880-29soc2gnra4ef44s9jf8nsffehvc9tfu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe4GZC9fk_gPq0uBdvHQGaqa7uhTWLc8k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
