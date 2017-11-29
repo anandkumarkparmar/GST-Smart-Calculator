@@ -6,121 +6,162 @@
     android:background="@drawable/theme_one_top"
     tools:context="in.coloredfeather.gstsmartcalculator.MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/keyboard"
-        android:orientation="vertical"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="40dp">
-
-        <TextView
-            android:id="@+id/calculations_first_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="1000000"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/calculations_second_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="right"
-            android:text="x 10"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:alpha="0.5"
-            android:background="@android:color/white" />
-
-        <TextView
-            android:id="@+id/calculations_total"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="right"
-            android:text="= 10000000"
-            android:textColor="@android:color/white"
-            android:textSize="24sp" />
+        android:layout_above="@+id/change_gst_mode">
 
         <LinearLayout
-            android:id="@+id/calculations_gst_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="64dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/calculations_gst_tag"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/calculations_first_input"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="left"
-                    android:text="GST (18%)"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/calculations_gst_amount"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
                     android:gravity="right"
-                    android:text="1800000"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:alpha="0.5"
-                android:background="@android:color/white" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/calculations_total_amount_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="left"
-                    android:text="Total Amount"
+                    android:text="1000000"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/calculations_total_amount_with_gst"
-                    android:layout_width="0dp"
+                    android:id="@+id/calculations_second_input"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_weight="1"
                     android:gravity="right"
-                    android:text="= 11800000"
+                    android:text="x 10"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:alpha="0.5"
+                    android:background="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/calculations_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="right"
+                    android:text="= 10000000"
                     android:textColor="@android:color/white"
                     android:textSize="24sp" />
+
+                <LinearLayout
+                    android:id="@+id/calculations_gst_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/calculations_gst_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="left"
+                            android:text="GST (18%)"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/calculations_gst_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="+ 1800000"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/calculations_part_gst_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="(CGST(9%): 900000,   SGST(9%): 900000)"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:alpha="0.5"
+                        android:background="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/calculations_total_amount_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="left"
+                            android:text="Total Amount"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/calculations_total_amount_with_gst"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="= 11800000"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/change_gst_mode"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_above="@+id/keyboard"
+        android:layout_margin="16dp"
+        android:background="@drawable/while_circle"
+        android:gravity="center"
+        android:text="-"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:id="@+id/keyboard"
@@ -450,9 +491,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@android:color/white"
                 android:gravity="center"
                 android:text="C"
-                android:background="@android:color/white"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -483,9 +524,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@android:color/white"
                 android:gravity="center"
                 android:text="="
-                android:background="@android:color/white"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
