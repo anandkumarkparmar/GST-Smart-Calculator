@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,13 +48,32 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.keyboard_clear)
     TextView clearKey;
 
+    @BindView(R.id.change_gst_mode)
+    TextView changeGSTMode;
+
+    @BindView(R.id.keyboard_gst_5)
+    TextView keyboardGST5;
+
+    @BindView(R.id.keyboard_gst_12)
+    TextView keyboardGST12;
+
+    @BindView(R.id.keyboard_gst_18)
+    TextView keyboardGST18;
+
+    @BindView(R.id.keyboard_gst_28)
+    TextView keyboardGST28;
+
     private Long firstNumber;
     private Long secondNumber;
     private Long totalAmount;
-    private Long gstAmount;
-    private Long totalAmountWithGST;
+    private Double gstAmount;
+    private Double totalAmountWithGST;
 
     private boolean firstNumberEditing = true;
+
+    private static final int GST_MODE_POSITIVE = 1;
+    private static final int GST_MODE_NEGATIVE = -1;
+    private int gstMode = GST_MODE_POSITIVE;
 
     /**
      * 0-plus
@@ -183,6 +204,29 @@ public class MainActivity extends AppCompatActivity {
         showGSTLayout(28);
     }
 
+    @OnClick(R.id.change_gst_mode)
+    protected void changeGSTModeOnClick(){
+        if(changeGSTMode.getText().equals("-")){
+            gstMode = GST_MODE_NEGATIVE;
+
+            keyboardGST5.setText("-5 %");
+            keyboardGST12.setText("-12 %");
+            keyboardGST18.setText("-18 %");
+            keyboardGST28.setText("-28 %");
+
+            changeGSTMode.setText("+");
+        } else {
+            gstMode = GST_MODE_POSITIVE;
+
+            keyboardGST5.setText("5 %");
+            keyboardGST12.setText("12 %");
+            keyboardGST18.setText("18 %");
+            keyboardGST28.setText("28 %");
+
+            changeGSTMode.setText("-");
+        }
+    }
+
     private void calculate(){
         if(!firstNumberEditing) {
             if (operation == 0) {
@@ -220,33 +264,57 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(firstNumberEditing){
-            firstNumber = (firstNumber * 10) + x;
-            firstInputCaculations.setText(formateAmount(firstNumber));
+            Long temp = (firstNumber * 10) + x;
 
-            totalAmount = firstNumber;
-            calculate();
-        } else {
-            secondNumber = (secondNumber * 10) + x;
-            if(secondNumber != 0){
-                secondInputCaculations.setText(mapOperations.get(operation) + " " + formateAmount(secondNumber));
-                clearKey.setText("C");
+            if(temp <= 999999999) {
+                firstNumber = (firstNumber * 10) + x;
+                firstInputCaculations.setText(formateAmount(firstNumber));
+
+                totalAmount = firstNumber;
                 calculate();
+            }
+        } else {
+            Long temp = (secondNumber * 10) + x;
+
+            if(temp <= 999999999) {
+                secondNumber = (secondNumber * 10) + x;
+                if (secondNumber != 0) {
+                    secondInputCaculations.setText(mapOperations.get(operation) + " " + formateAmount(secondNumber));
+                    clearKey.setText("C");
+                    calculate();
+                }
             }
         }
     }
 
     private void showGSTLayout(int gstPercentage){
-        gstAmount = (totalAmount * gstPercentage)/100;
-        totalAmountWithGST = totalAmount + gstAmount;
+        if(gstMode == GST_MODE_POSITIVE) {
+            gstAmount = (totalAmount * (gstPercentage / 100.00));
+            totalAmountWithGST = totalAmount + gstAmount;
 
-        gstTagCaculations.setText("GST (" + gstPercentage + "%)");
-        gstAmountCaculations.setText(formateAmount(gstAmount));
-        partGSTAmountCalculations.setText("( CGST("+ (gstPercentage/2.0) +"%) = " + formateAmount(gstAmount/2.0) + " )\n( SGST(" + (gstPercentage/2.0) + "%) = " + formateAmount(gstAmount/2.0) + " )");
-        totalAmountWithGSTCaculations.setText("= " + formateAmount(totalAmountWithGST));
+            gstTagCaculations.setText("GST (" + gstPercentage + "%)");
+            gstAmountCaculations.setText(formateAmount(gstAmount));
+            partGSTAmountCalculations.setText("( CGST(" + (gstPercentage / 2.0) + "%) = " + formateAmount(gstAmount / 2.0) + " )\n( SGST(" + (gstPercentage / 2.0) + "%) = " + formateAmount(gstAmount / 2.0) + " )");
+            totalAmountWithGSTTagCaculations.setText("Total Amount");
+            totalAmountWithGSTCaculations.setText("= " + formateAmount(totalAmountWithGST));
 
-        gstLayoutCaculations.setVisibility(View.VISIBLE);
+            gstLayoutCaculations.setVisibility(View.VISIBLE);
 
-        clearKey.setText("AC");
+            clearKey.setText("AC");
+        } else {
+            gstAmount = totalAmount - (totalAmount / ( 1 + (gstPercentage / 100.00)));
+            totalAmountWithGST = totalAmount - gstAmount;
+
+            gstTagCaculations.setText("GST (" + gstPercentage + "%)");
+            gstAmountCaculations.setText("- " + formateAmount(gstAmount));
+            partGSTAmountCalculations.setText("( CGST(" + (gstPercentage / 2.0) + "%) = - " + formateAmount(gstAmount / 2.0) + " )\n( SGST(" + (gstPercentage / 2.0) + "%) = - " + formateAmount(gstAmount / 2.0) + " )");
+            totalAmountWithGSTTagCaculations.setText("Total Amount(without GST)");
+            totalAmountWithGSTCaculations.setText("= " + formateAmount(totalAmountWithGST));
+
+            gstLayoutCaculations.setVisibility(View.VISIBLE);
+
+            clearKey.setText("AC");
+        }
     }
 
     private void clear(){
@@ -269,8 +337,8 @@ public class MainActivity extends AppCompatActivity {
         firstNumber = 0L;
         secondNumber = 0L;
         totalAmount = 0L;
-        gstAmount = 0L;
-        totalAmountWithGST = 0L;
+        gstAmount = 0D;
+        totalAmountWithGST = 0D;
 
         gstLayoutCaculations.setVisibility(View.GONE);
         firstInputCaculations.setText("" + firstNumber);
@@ -287,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String formateAmount(Double amount){
-        DecimalFormat formatter = new DecimalFormat("##,##,###.#");
+        DecimalFormat formatter = new DecimalFormat("##,##,###.##");
         return formatter.format(amount);
     }
 }
