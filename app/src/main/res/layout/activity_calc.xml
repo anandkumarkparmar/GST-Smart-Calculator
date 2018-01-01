@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/theme_one_top"
-    tools:context="in.coloredfeather.gstsmartcalculator.MainActivity">
+    tools:context="in.coloredfeather.gstsmartcalculator.GSTCalcActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="1000000"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/colorTextPrimary"
                     android:textSize="16sp" />
 
                 <TextView
@@ -42,7 +41,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="right"
                     android:text="x 10"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/colorTextPrimary"
                     android:textSize="16sp" />
 
                 <View
@@ -50,7 +49,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="16dp"
                     android:alpha="0.5"
-                    android:background="@android:color/white" />
+                    android:background="@color/colorTextPrimary" />
 
                 <TextView
                     android:id="@+id/calculations_total"
@@ -59,7 +58,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="right"
                     android:text="= 10000000"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/colorTextPrimary"
                     android:textSize="24sp" />
 
                 <LinearLayout
@@ -81,7 +80,7 @@
                             android:layout_marginTop="8dp"
                             android:gravity="left"
                             android:text="GST (18%)"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="16sp" />
 
                         <TextView
@@ -92,7 +91,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="+ 1800000"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="16sp" />
                     </LinearLayout>
 
@@ -109,7 +108,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="(CGST(9%): 900000,   SGST(9%): 900000)"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="16sp" />
                     </LinearLayout>
 
@@ -118,7 +117,7 @@
                         android:layout_height="1dp"
                         android:layout_marginTop="16dp"
                         android:alpha="0.5"
-                        android:background="@android:color/white" />
+                        android:background="@color/colorTextPrimary" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -132,7 +131,7 @@
                             android:layout_marginTop="8dp"
                             android:gravity="left"
                             android:text="Total Amount"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="16sp" />
 
                         <TextView
@@ -143,7 +142,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="= 11800000"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="24sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -151,30 +150,12 @@
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/change_gst_mode"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_above="@+id/keyboard"
-        android:layout_margin="16dp"
-        android:background="@drawable/while_circle"
-        android:gravity="center"
-        android:text="-"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp" />
-
     <LinearLayout
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/theme_one_top"
         android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -186,72 +167,70 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/white"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="5 %"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"/>
 
             <TextView
                 android:id="@+id/keyboard_gst_12"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/white"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="12 %"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"/>
 
             <TextView
                 android:id="@+id/keyboard_gst_18"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/white"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="18 %"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"/>
 
             <TextView
                 android:id="@+id/keyboard_gst_28"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/white"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="28 %"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent" />
-
         </LinearLayout>
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/white" />
+            android:background="@color/colorAccent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -265,7 +244,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="7"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -281,7 +260,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="8"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -297,7 +276,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="9"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -313,7 +292,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="/"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -341,7 +320,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="4"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -357,7 +336,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="5"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -373,7 +352,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="6"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -389,7 +368,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="x"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -417,7 +396,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="1"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -433,7 +412,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="2"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -449,7 +428,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="3"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -465,7 +444,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="-"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -491,10 +470,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/white"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="C"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -510,7 +489,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -524,10 +503,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/white"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="="
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -543,7 +522,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="+"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

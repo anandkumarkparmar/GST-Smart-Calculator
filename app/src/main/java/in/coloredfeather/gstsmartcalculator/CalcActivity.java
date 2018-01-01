@@ -1,7 +1,7 @@
 package in.coloredfeather.gstsmartcalculator;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class CalcActivity extends AppCompatActivity {
 
     @BindView(R.id.calculations_first_input)
     TextView firstInputCaculations;
@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.keyboard_clear)
     TextView clearKey;
 
-    @BindView(R.id.change_gst_mode)
-    TextView changeGSTMode;
-
     @BindView(R.id.keyboard_gst_5)
     TextView keyboardGST5;
 
@@ -69,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean firstNumberEditing = true;
 
-    private static final int GST_MODE_POSITIVE = 1;
-    private static final int GST_MODE_NEGATIVE = -1;
+    public static final int GST_MODE_POSITIVE = 1;
+    public static final int GST_MODE_NEGATIVE = -1;
     private int gstMode = GST_MODE_POSITIVE;
 
     /**
@@ -86,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calc);
         ButterKnife.bind(this);
 
         reset();
@@ -95,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
         mapOperations.put(1, "-");
         mapOperations.put(2, "x");
         mapOperations.put(3, "/");
+    }
+
+    public void setGstMode(int gstMode) {
+        this.gstMode = gstMode;
+        changeGSTModeOnClick();
     }
 
     @OnClick(R.id.keyboard_0)
@@ -202,26 +204,17 @@ public class MainActivity extends AppCompatActivity {
         showGSTLayout(28);
     }
 
-    @OnClick(R.id.change_gst_mode)
     protected void changeGSTModeOnClick(){
-        if(changeGSTMode.getText().equals("-")){
-            gstMode = GST_MODE_NEGATIVE;
-
+        if(gstMode == GST_MODE_NEGATIVE){
             keyboardGST5.setText("-5 %");
             keyboardGST12.setText("-12 %");
             keyboardGST18.setText("-18 %");
             keyboardGST28.setText("-28 %");
-
-            changeGSTMode.setText("+");
         } else {
-            gstMode = GST_MODE_POSITIVE;
-
             keyboardGST5.setText("5 %");
             keyboardGST12.setText("12 %");
             keyboardGST18.setText("18 %");
             keyboardGST28.setText("28 %");
-
-            changeGSTMode.setText("-");
         }
     }
 
