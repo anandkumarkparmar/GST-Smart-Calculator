@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.calculations_gst_amount)
     TextView gstAmountCaculations;
 
+    @BindView(R.id.calculations_part_gst_amount)
+    TextView partGSTAmountCalculations;
+
     @BindView(R.id.calculations_total_amount_tag)
     TextView totalAmountWithGSTTagCaculations;
 
@@ -42,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.keyboard_clear)
     TextView clearKey;
 
-    private Integer firstNumber;
-    private Integer secondNumber;
-    private Integer totalAmount;
-    private Integer gstAmount;
-    private Integer totalAmountWithGST;
+    private Long firstNumber;
+    private Long secondNumber;
+    private Long totalAmount;
+    private Long gstAmount;
+    private Long totalAmountWithGST;
 
     private boolean firstNumberEditing = true;
 
@@ -192,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        totalAmountCaculations.setText("= " + totalAmount);
+        totalAmountCaculations.setText("= " + formateAmount(totalAmount));
     }
 
     private void setOperation(int operation){
@@ -217,14 +221,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(firstNumberEditing){
             firstNumber = (firstNumber * 10) + x;
-            firstInputCaculations.setText(String.valueOf(firstNumber));
+            firstInputCaculations.setText(formateAmount(firstNumber));
 
             totalAmount = firstNumber;
             calculate();
         } else {
             secondNumber = (secondNumber * 10) + x;
             if(secondNumber != 0){
-                secondInputCaculations.setText(mapOperations.get(operation) + " " + String.valueOf(secondNumber));
+                secondInputCaculations.setText(mapOperations.get(operation) + " " + formateAmount(secondNumber));
                 clearKey.setText("C");
                 calculate();
             }
@@ -236,8 +240,9 @@ public class MainActivity extends AppCompatActivity {
         totalAmountWithGST = totalAmount + gstAmount;
 
         gstTagCaculations.setText("GST (" + gstPercentage + "%)");
-        gstAmountCaculations.setText(String.valueOf(gstAmount));
-        totalAmountWithGSTCaculations.setText("= " + String.valueOf(totalAmountWithGST));
+        gstAmountCaculations.setText(formateAmount(gstAmount));
+        partGSTAmountCalculations.setText("( CGST("+ (gstPercentage/2.0) +"%) = " + formateAmount(gstAmount/2.0) + " )\n( SGST(" + (gstPercentage/2.0) + "%) = " + formateAmount(gstAmount/2.0) + " )");
+        totalAmountWithGSTCaculations.setText("= " + formateAmount(totalAmountWithGST));
 
         gstLayoutCaculations.setVisibility(View.VISIBLE);
 
@@ -251,9 +256,9 @@ public class MainActivity extends AppCompatActivity {
             if(firstNumberEditing){
                 reset();
             } else {
-                secondNumber = 0;
+                secondNumber = 0L;
                 totalAmount = firstNumber;
-                totalAmountCaculations.setText("= " + totalAmount);
+                totalAmountCaculations.setText("= " + formateAmount(totalAmount));
                 secondInputCaculations.setText(mapOperations.get(operation) + " ");
                 clearKey.setText("AC");
             }
@@ -261,11 +266,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void reset(){
-        firstNumber = 0;
-        secondNumber = 0;
-        totalAmount = 0;
-        gstAmount = 0;
-        totalAmountWithGST = 0;
+        firstNumber = 0L;
+        secondNumber = 0L;
+        totalAmount = 0L;
+        gstAmount = 0L;
+        totalAmountWithGST = 0L;
 
         gstLayoutCaculations.setVisibility(View.GONE);
         firstInputCaculations.setText("" + firstNumber);
@@ -274,5 +279,15 @@ public class MainActivity extends AppCompatActivity {
 
         firstNumberEditing = true;
         clearKey.setText("C");
+    }
+
+    private String formateAmount(Long amount){
+        DecimalFormat formatter = new DecimalFormat("##,##,###");
+        return formatter.format(amount);
+    }
+
+    private String formateAmount(Double amount){
+        DecimalFormat formatter = new DecimalFormat("##,##,###.#");
+        return formatter.format(amount);
     }
 }
